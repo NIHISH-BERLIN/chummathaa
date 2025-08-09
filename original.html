@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medimit – Online Doctor Consultation</title>
+  <style>
+    /* Global Setup */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #dff8fa;
+      color: #333;
+      overflow-x: hidden;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 30px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      color: #007bff;
+    }
+    .nav-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #333;
+    }
+    .login-btn {
+      padding: 8px 16px;
+      border: 1px solid #007bff;
+      background: #fff;
+      color: #007bff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Hero & Fade-in */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #b1acf1;
+      padding: 40px 60px;
+    }
+    .hero-text, .hero-img img {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    .hero-text { animation-delay: 0.3s; }
+    .hero-img img { animation-delay: 0.6s; }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Wave Parallax */
+    .waves {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 15vh;
+      min-height: 100px;
+      max-height: 150px;
+    }
+    .parallax > use {
+      animation: moveForever 20s linear infinite;
+    }
+    .parallax > use:nth-child(1) { animation-duration: 7s; }
+    .parallax > use:nth-child(2) { animation-duration: 10s; animation-delay: -3s; }
+    .parallax > use:nth-child(3) { animation-duration: 13s; animation-delay: -5s; }
+    .parallax > use:nth-child(4) { animation-duration: 20s; animation-delay: -7s; }
+    @keyframes moveForever {
+      from { transform: translate3d(-90px,0,0); }
+      to { transform: translate3d(85px,0,0); }
+    }
+
+    /* 3D Loader */
+    .loader {
+      margin: 30px auto 0;
+      width: 100px;
+      height: 100px;
+      perspective: 200px;
+    }
+    .sphere {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: rotate3d 8s linear infinite;
+    }
+    .sphere div {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #007bff;
+      border-radius: 50%;
+      animation: pulsate 1s infinite alternate;
+    }
+    @keyframes rotate3d {
+      0% { transform: rotate3d(1,1,1,0deg); }
+      100% { transform: rotate3d(1,1,1,360deg); }
+    }
+    @keyframes pulsate {
+      to { transform: scale(2); }
+    }
+
+    /* Button Outline Hover */
+    .hero-text button {
+      position: relative;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 5px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .hero-text button svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+    }
+    .hero-text button path {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      transition: stroke-dashoffset 0.8s ease;
+    }
+    .hero-text button:hover path {
+      stroke-dashoffset: 0;
+    }
+
+    /* Card Hover */
+    .card, .concern-card {
+      position: relative;
+      width: 160px;
+      padding: 15px;
+      margin: 10px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover, .concern-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Multicolor Sparkles */
+    .sparkle-multi {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      will-change: transform, opacity, background, box-shadow;
+    }
+
+    .section {
+      padding: 40px 60px;
+    }
+    .specialities, .concern-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">MediMeet</div>
+    <div class="nav-links">
+      <a href="#">Find Doctors</a>
+      <a href="#">Video Consult</a>
+      <a href="#">Surgeries</a>
+      <a href="#">Help</a>
+    </div>
+    <button class="login-btn">Login / Signup</button>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <h1>No Need To Travel! Take Online Doctor Consultation</h1>
+      <p>Private consultation + Audio call · Starts at just ₹99</p>
+      <button>
+        Consult Now
+        <svg viewBox="0 0 200 60"><path d="M10,10 h180 v40 h-180 z"/></svg>
+      </button>
+      <div class="loader">
+        <div class="sphere">
+          <div style="transform: translate3d(0,0,50px);"></div>
+          <div style="transform: translate3d(0,0,-50px);"></div>
+          <div style="transform: translate3d(50px,0,0);"></div>
+          <div style="transform: translate3d(-50px,0,0);"></div>
+          <div style="transform: translate3d(0,50px,0);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://via.placeholder.com/400x300" alt="Consultation">
+    </div>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/></defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)"/>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)"/>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)"/>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="section">
+    <h2>25+ Specialities</h2>
+    <div class="specialities">
+      <div class="card"><img src="https://img.icons8.com/ios/100/male.png"/><h3>Sexology</h3><p>₹499</p><a href="#">Consult now</a></div>
+      <div class="card"><img src="https://img.icons8.com/ios/100/stethoscope.png"/><h3>General physician</h3><p>₹399</p><a href="#">Consult now</a></div>
+      <div class="card"><img src="https://img.icons8.com/ios/100/skin-type-2.png"/><h3>Dermatology</h3><p>₹449</p><a href="#">Consult now</a></div>
+      <div class="card"><img src="https://img.icons8.com/ios/100/mental-health.png"/><h3>Psychiatry</h3><p>₹499</p><a href="#">Consult now</a></div>
+      <div class="card"><img src="https://via.placeholder.com/60"/><h3>Stomach & Digestion</h3><p>₹699</p><a href="#">Consult now</a></div>
+    </div>
+
+    <h2>Common Health Concerns</h2>
+    <div class="concern-cards">
+      <div class="concern-card"><img src="https://i.imgur.com/2u7ThFe.jpg"/><h4>Cough & Cold?</h4><p>₹399</p><a href="#">Consult Now</a></div>
+      <div class="concern-card"><img src="https://i.imgur.com/qUmFMPg.jpg"/><h4>Period problems?</h4><p>₹499</p><a href="#">Consult Now</a></div>
+      <div class="concern-card"><img src="https://i.imgur.com/jAL4Uyo.jpg"/><h4>Performance issues in bed?</h4><p>₹499</p><a href="#">Consult Now</a></div>
+      <div class="concern-card"><img src="https://i.imgur.com/WZ4oM10.jpg"/><h4>Skin problems?</h4><p>₹449</p><a href="#">Consult Now</a></div>
+    </div>
+  </div>
+
+</body>
+</html>
